@@ -12,7 +12,7 @@ pkgname=('nvidia-sdk' 'nvidia-sdk-doc')
 pkgver=11.1.5
 pkgrel=1
 pkgdesc='NVIDIA Video Codec SDK (NVDECODE and NVENCODE APIs)'
-arch=('any')
+arch=('aarch64' 'x86_64')
 url='https://developer.nvidia.com/nvidia-video-codec-sdk/'
 license=('custom')
 makedepends=('poppler')
@@ -25,6 +25,7 @@ prepare() {
 
 package_nvidia-sdk() {
     install -D -m644 "Video_Codec_SDK_${pkgver}/Interface"/*.h -t "${pkgdir}/usr/include/${pkgbase}"
+    install -D -m755 "Video_Codec_SDK_${pkgver}/Lib/linux/stubs/${arch}"/*.so -t "${pkgdir}/usr/lib/"
     install -D -m644 "Video_Codec_SDK_${pkgver}/LicenseAgreement.txt" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
 
